@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React App</title>
+  </head>
+  <body>
+​
+    <!-- We will put our React component inside this div. -->
+    <div id="cenas"></div>
+    <div id="exer-7"></div>
+    <div id="exer-8"></div>
+​
+    <!-- Load React. -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin></script>
+
+
+    <script type="text/babel">
+
+    // #7
+    const lista7 = ['First item', 'Second item'];
+    class Exercicio7 extends React.Component {
+      constructor(props) {
+        super(props);
+      }
+      render() {
+        const listItems = this.props.name.map((item) => 
+          <li>{item}</li>
+        );
+        return <ul className="items">{listItems}</ul>;
+      }
+    }
+    ReactDOM.render(<Exercicio7 name={lista7} />, document.getElementById('exer-7'));
+
+
+
+    // #8
+    const lista8 = {
+      '2': {
+        class: 'number_two',
+        number: 2
+      },
+      'number_three': {
+        class: 'number_three',
+        number: 3
+      },
+      '4': {
+        class: 'number_four',
+        number: 4
+      },
+      'number_one': {
+        class: 'number_one',
+        number: 1
+      }
+    };
+
+    const arr = Object.keys(lista8).map((key) => {
+      console.log(lista8[key].number);
+      return lista8[key];
+    });
+
+    class Exercicio8 extends React.Component {
+      constructor(props) {
+        super(props);
+      }
+      insideul(lista8) {
+        return <ul>{
+          lista8.map((item) => {
+            return <li>{item.number}</li>
+          })
+        }</ul>
+      }
+      render() {
+        const uls = this.insideul(this.props.list);
+        const listItems = this.props.list.map((item) =>
+          <li>{item.number}{uls}</li>
+        );
+        return <ul>{listItems}</ul>;
+      }
+    }
+    ReactDOM.render(<Exercicio8 list={arr} />, document.getElementById('exer-8'));
+
+
+
+
+    const items=['cenas'];
+
+    class Welcome extends React.Component {
+      constructor(props) {
+        super(props);
+      }
+      render() {
+        return <h1>Hello, {this.props.name}</h1>;
+      }
+    }
+
+    ReactDOM.render(<Welcome name={items} />, document.getElementById('cenas'));
+
+    </script>
+​
+  </body>
+</html>
